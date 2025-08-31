@@ -322,7 +322,7 @@ export default function Index() {
           <h2 className="font-raleway text-xl sm:text-2xl lg:text-[32px] font-extrabold leading-tight sm:leading-relaxed lg:leading-[38.4px] mb-6 sm:mb-8 text-navy-dark">
             Vamos identificar e destravar juntos o
             <br className="hidden sm:block" />
-            que est�� impedindo seu avanço.
+            que esta impedindo seu avanço.
           </h2>
 
           <p className="text-sm sm:text-base font-raleway text-navy-dark mb-6 sm:mb-8">
