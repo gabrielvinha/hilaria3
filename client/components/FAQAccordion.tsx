@@ -4,23 +4,16 @@ import { Button } from "@/components/ui/button";
 const CTAButton = ({
   children,
   className = "",
-  onClick,
 }: {
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
 }) => (
   <Button
-    onClick={onClick}
     className={`bg-gradient-to-r from-green-start to-green-end hover:from-green-start/90 hover:to-green-end/90 text-white font-raleway font-bold text-sm sm:text-base leading-4 tracking-wide uppercase px-6 sm:px-12 md:px-16 lg:px-24 py-4 sm:py-5 lg:py-6 rounded-full shadow-[0_-4px_56px_0_rgba(37,211,102,0.48)] transition-all duration-300 h-auto w-full sm:w-auto ${className}`}
   >
     {children}
   </Button>
 );
-
-interface FAQAccordionProps {
-  onCtaClick?: () => void;
-}
 
 interface FAQItem {
   question: string;
@@ -80,7 +73,7 @@ const faqData: FAQItem[] = [
   },
 ];
 
-export const FAQAccordion: React.FC<FAQAccordionProps> = ({ onCtaClick }) => {
+export const FAQAccordion = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleItem = (index: number) => {
@@ -157,9 +150,11 @@ export const FAQAccordion: React.FC<FAQAccordionProps> = ({ onCtaClick }) => {
 
         {/* CTA Final */}
         <div className="text-center">
-          <CTAButton className="w-full sm:w-auto" onClick={onCtaClick}>
-            Quero o método E.R.A. aplicado
-          </CTAButton>
+          <a href="#formulario">
+            <CTAButton className="w-full sm:w-auto">
+              Quero o método E.R.A. aplicado
+            </CTAButton>
+          </a>
         </div>
       </div>
     </section>
