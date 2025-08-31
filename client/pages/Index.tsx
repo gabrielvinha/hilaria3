@@ -2,15 +2,20 @@ import { Button } from "@/components/ui/button";
 import { CountdownBanner } from "@/components/CountdownBanner";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { WhatsAppFormModal } from "@/components/WhatsAppFormModal";
+import { useWhatsAppModal } from "@/hooks/useWhatsAppModal";
 
 const CTAButton = ({
   children,
   className = "",
+  onClick,
 }: {
   children: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }) => (
   <Button
+    onClick={onClick}
     className={`bg-gradient-to-r from-green-start to-green-end hover:from-green-start/90 hover:to-green-end/90 text-white font-raleway font-bold text-sm sm:text-base leading-4 tracking-wide uppercase px-6 sm:px-12 md:px-16 lg:px-24 py-4 sm:py-5 lg:py-6 rounded-full shadow-[0_-4px_56px_0_rgba(37,211,102,0.48)] transition-all duration-300 h-auto w-full sm:w-auto ${className}`}
   >
     {children}
@@ -18,10 +23,12 @@ const CTAButton = ({
 );
 
 export default function Index() {
+  const { isOpen, openModal, closeModal } = useWhatsAppModal();
+
   return (
     <div className="min-h-screen bg-navy-dark overflow-x-hidden">
       {/* Countdown Banner */}
-      <CountdownBanner />
+      <CountdownBanner onCtaClick={openModal} />
       {/* Hero Section */}
       <section
         className="relative min-h-[600px] sm:min-h-[700px] lg:min-h-[845px] flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[230px] py-8 sm:py-12 lg:py-0 overflow-hidden mt-[1px]"
@@ -112,7 +119,7 @@ export default function Index() {
               </div>
 
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 justify-center lg:justify-start">
-                <CTAButton className="w-full sm:w-auto">
+                <CTAButton className="w-full sm:w-auto" onClick={openModal}>
                   Quero destravar minha gestão agora
                 </CTAButton>
               </div>
@@ -245,7 +252,7 @@ export default function Index() {
             </div>
 
             <div className="mt-6 sm:mt-8 flex justify-center lg:justify-start">
-              <CTAButton className="w-full sm:w-auto">
+              <CTAButton className="w-full sm:w-auto" onClick={openModal}>
                 Quero liderança respeitada
               </CTAButton>
             </div>
@@ -347,7 +354,7 @@ export default function Index() {
           </div>
 
           <div className="flex justify-center">
-            <CTAButton className="w-full sm:w-auto">
+            <CTAButton className="w-full sm:w-auto" onClick={openModal}>
               Desbloquear minha autoridade
             </CTAButton>
           </div>
@@ -355,7 +362,7 @@ export default function Index() {
       </section>
 
       {/* FAQ Section */}
-      <FAQAccordion />
+      <FAQAccordion onCtaClick={openModal} />
 
       {/* Método HERA Section */}
       <section
@@ -484,13 +491,9 @@ export default function Index() {
 
           {/* CTA */}
           <div className="text-center">
-            <a href="#formulario">
-              <CTAButton className="w-full sm:w-auto">
-                Quero o método E.R.A. aplicado
-              </CTAButton>
-            </a>
-            <p className="text-xs text-gray-600 mt-3">
-              WhatsApp abre com seus dados do formulário.
+            <CTAButton className="w-full sm:w-auto" onClick={openModal}>
+              Quero o método E.R.A. aplicado
+            </CTAButton>
             </p>
           </div>
         </div>
@@ -691,11 +694,9 @@ export default function Index() {
 
             {/* CTA */}
             <div className="flex justify-center">
-              <a href="#formulario">
-                <CTAButton className="w-full sm:w-auto">
-                  Quero conduzir assembleias sem conflito
-                </CTAButton>
-              </a>
+              <CTAButton className="w-full sm:w-auto" onClick={openModal}>
+                Quero conduzir assembleias sem conflito
+              </CTAButton>
             </div>
           </div>
         </div>
@@ -721,6 +722,9 @@ export default function Index() {
           </a>
         </div>
       </footer>
+
+      {/* WhatsApp Form Modal */}
+      <WhatsAppFormModal isOpen={isOpen} onClose={closeModal} />
     </div>
   );
 }
